@@ -1,4 +1,4 @@
-let url = window.location.href;
+let url = window.location.search;
 let header = document.getElementById('header');
 let search = document.getElementById('header__request');
 let button = document.getElementById('header__button');
@@ -59,7 +59,7 @@ fetch(`https://api.github.com/users/${search.value}`)
 }
 
 if (url != '') {
-  search.value = url.split('=');
+  search.value = url.split('=')[1];
   clickButton();
 } 
 
