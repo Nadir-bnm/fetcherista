@@ -19,7 +19,7 @@ let generator = () => {
       name = 'Nadir-bnm';
   }
   return 'https://api.github.com/users/' + name;
-}
+};
 
 let apiCall = generator();
 
@@ -40,8 +40,8 @@ let refresher = function(obj) {
 
 Promise.all([getDate])
 .then(() => fetch(apiCall))
-.then(res => res.json)
-.then(json => user = Object.assign({}, obj))
+.then(res => res.json())
+.then(obj => user = Object.assign({}, obj))
 .then(user => refresher(user));
 
 
