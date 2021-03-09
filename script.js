@@ -1,14 +1,12 @@
 let url = window.location.href;
-let header = document.getElementById('header');
-let search = document.getElementById('header__request');
-let button = document.getElementById('header__button');
-let main = document.getElementById('main');
+let loader = document.getElementById('preloader');
+let wrapper = document.getElementById('wrapper');
 let date = document.getElementById('date');
-let img = document.getElementById('main__photo');
-let login = document.getElementById('main__name');
+let img = document.getElementById('photo');
+let login = document.getElementById('name');
 let bio = document.getElementById('bio');
-let footer = document.getElementById('footer');
-let link = document.getElementById('footer__link');
+let link = document.getElementById('link');
+let cover = document.getElementById('cover');
 let user;
 
 let generator = () => {
@@ -29,13 +27,20 @@ let getDate = new Promise((resolve, reject) => {
 });
 
 let refresher = function(obj) {
+  loader.classList.add('hidden');
+  cover.classList.remove('hidden');
+
   login.value = obj.name;
   
   link.href = obj.html_url;
-  
-  bio.value = obj.bio;
 
   img.src = obj.avatar_url;
+
+  if (obj.bio != null) {
+    bio.value = obj.bio;
+  } else {
+    bio.value = 'No data available';
+  }
 };
 
 Promise.all([getDate])
